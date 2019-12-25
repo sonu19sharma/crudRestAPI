@@ -17,8 +17,8 @@ public class Employee {
     @NotBlank
     private String lastName;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long emp_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     public String getFirstName() {
         return firstName;
@@ -56,21 +56,24 @@ public class Employee {
     private String designation;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date dob;
-    @OneToMany
-    @JoinTable(name = "address",joinColumns = @JoinColumn(name="address_id"),inverseJoinColumns = @JoinColumn(name = "emp_id"))
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "table_map",joinColumns = @JoinColumn(name="emp_id"),inverseJoinColumns = @JoinColumn(name = "address_id"))
     private Collection<Address> address=new ArrayList<>();
 
     public Collection<Address> getAddress(){
         return address;
     }
 
+    public void setAddress(Collection<Address> address) {
+        this.address = address;
+    }
 
     public Long getEmp_id() {
-        return emp_id;
+        return id;
     }
 
     public void setEmp_id(Long emp_id) {
-        this.emp_id = emp_id;
+        this.id = emp_id;
     }
 
 

@@ -10,9 +10,8 @@ import javax.validation.constraints.NotBlank;
 public class Address {
 
     @Id
-    @GeneratedValue(generator = "gen")
-    @GenericGenerator(name="gen",strategy = "foreign",parameters = {@Parameter(name = "property",value = "employee")})
-    private Long address_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NotBlank
     private String addresstype;
     @NotBlank
@@ -20,12 +19,13 @@ public class Address {
     private String addressline2;
     private String addressline3;
 
-    public Long getAddress_id() {
-        return address_id;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setAddress_id(Long address_id) {
-        this.address_id = address_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Employee getEmployee() {
