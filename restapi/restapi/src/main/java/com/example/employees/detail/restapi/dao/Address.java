@@ -41,7 +41,10 @@ public class Address {
     private int pin;
 
     @ManyToOne
-    @JoinColumn(name = "emp_id")
+//            (fetch = FetchType.LAZY)
+//    @JoinColumn(name = "emp_id") for hybernate
+//    @JoinColumn(name = "emp_id",
+//    insertable = true,updatable = false,nullable = true)
     private Employee employee;
 
     public String getAddresstype() {

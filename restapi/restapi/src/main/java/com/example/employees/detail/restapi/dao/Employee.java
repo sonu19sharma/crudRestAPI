@@ -1,8 +1,6 @@
 package com.example.employees.detail.restapi.dao;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -57,7 +55,9 @@ public class Employee {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date dob;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "table_map",joinColumns = @JoinColumn(name="emp_id"),inverseJoinColumns = @JoinColumn(name = "address_id"))
+    @JoinColumn(name = "emp_id")
+//    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER,mappedBy = "employee")
+//    @JoinTable(name = "table_map",joinColumns = @JoinColumn(name="emp_id"),inverseJoinColumns = @JoinColumn(name = "address_id")) for hybernate
     private Collection<Address> address=new ArrayList<>();
 
     public Collection<Address> getAddress(){

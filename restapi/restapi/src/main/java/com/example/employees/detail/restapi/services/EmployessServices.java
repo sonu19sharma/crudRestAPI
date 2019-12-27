@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class EmployessServices {
@@ -25,7 +26,14 @@ public class EmployessServices {
     }
 
     public Employee findById(Long id){
-        return employeeRepository.findById(id).get();
+        Employee employee;
+        try {
+            employee=employeeRepository.findById(id).get();
+        }
+        catch (Exception e){
+            employee=null;
+        }
+        return employee;
     }
 
     public Employee updateEmployee(Employee newemployee,Long id){
